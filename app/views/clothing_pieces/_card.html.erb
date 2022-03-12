@@ -44,12 +44,20 @@
 
       <dt>Borrower</dt>
       <!-- Display borrower_id start -->
-      <dd><%= clothing_piece.borrower_id %></dd>
+      <dd>
+        <% if @clothing_piece.borrower.present? %>
+          <%= link_to clothing_piece.borrower, clothing_piece.borrower %>
+        <% end %>
+      </dd>
       <!-- Display borrower_id end -->
 
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= clothing_piece.user_id %></dd>
+      <dd>
+        <% if @clothing_piece.user.present? %>
+          <%= link_to clothing_piece.user, clothing_piece.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
     </dl>
