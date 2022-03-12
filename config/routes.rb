@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "clothing_pieces#index"
   resources :borrowers
   resources :clothing_pieces
   devise_for :users
