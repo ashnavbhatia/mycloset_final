@@ -5,7 +5,8 @@ class ClothingPiecesController < ApplicationController
 
   # GET /clothing_pieces
   def index
-    @clothing_pieces = ClothingPiece.page(params[:page]).per(10)
+    @q = ClothingPiece.ransack(params[:q])
+    @clothing_pieces = @q.result(:distinct => true).includes(:user, :borrower).page(params[:page]).per(10)
   end
 
   # GET /clothing_pieces/1

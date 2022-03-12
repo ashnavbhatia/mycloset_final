@@ -3,7 +3,8 @@ class BorrowersController < ApplicationController
 
   # GET /borrowers
   def index
-    @borrowers = Borrower.page(params[:page]).per(10)
+    @q = Borrower.ransack(params[:q])
+    @borrowers = @q.result(:distinct => true).includes(:clothing_pieces).page(params[:page]).per(10)
   end
 
   # GET /borrowers/1

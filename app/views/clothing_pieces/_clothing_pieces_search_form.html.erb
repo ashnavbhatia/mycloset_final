@@ -1,0 +1,139 @@
+<%= search_form_for @q, :class => collapse_search_form, :id => "clothing_pieces_filters" do |f| %>
+  <p class="lead">Narrow results:</p>
+
+  <div class="form-group">
+    <%= f.label :title_cont, "Title contains" %>
+    <%= f.text_field :title_cont, :class => "form-control", :placeholder => "Title contains" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :borrowed_eq, "Borrowed" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :borrowed_eq, "1", checked: ((params[:q] && params[:q][:borrowed_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :borrowed_eq, "0", checked: ((params[:q] && params[:q][:borrowed_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :borrowed_eq, ""%> Either
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_used_date, "Last used date" %>
+    <div class="row">
+      <div class='col-md-6 mb-1'>
+        <div class='input-group date' id='last_used_dategteqPicker' data-target-input="nearest">
+          <%= f.text_field :last_used_date_gteq, :class => "form-control datetimepicker-input", :placeholder => "Last used date greater than or equal to", :data => {:target => '#last_used_dategteqPicker'} %>
+          <div class="input-group-append" data-target='#last_used_dategteqPicker' data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class='input-group date' id='last_used_datelteqPicker' data-target-input="nearest">
+          <%= f.text_field :last_used_date_lteq, :class => "form-control datetimepicker-input", :placeholder => "Last used date less than or equal to", :data => {:target => '#last_used_datelteqPicker'} %>
+          <div class="input-group-append" data-target='#last_used_datelteqPicker' data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+      $(function () {
+          $('#last_used_dategteqPicker').datetimepicker({
+              format: 'MM/DD/YYYY'
+          });
+          $('#last_used_datelteqPicker').datetimepicker({
+              useCurrent: false,
+              format: 'MM/DD/YYYY'
+          });
+          $('#last_used_dategteqPicker').on("dp.change", function (e) {
+              $('#last_used_datelteqPicker').data("DateTimePicker").minDate(e.date);
+          });
+          $('#last_used_datelteqPicker').on("dp.change", function (e) {
+              $('#last_used_dategteqPicker').data("DateTimePicker").maxDate(e.date);
+          });
+      });
+  </script>
+
+  <div class="form-group">
+    <%= f.label :brand_name_cont, "Brand name contains" %>
+    <%= f.text_field :brand_name_cont, :class => "form-control", :placeholder => "Brand name contains" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :clothing_type_cont, "Clothing type contains" %>
+    <%= f.text_field :clothing_type_cont, :class => "form-control", :placeholder => "Clothing type contains" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description_cont, "Description contains" %>
+    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :created_at, "Created at" %>
+    <div class="row">
+      <div class='col-md-6 mb-1'>
+        <div class='input-group date' id='created_atgteqPicker' data-target-input="nearest">
+          <%= f.text_field :created_at_gteq, :class => "form-control datetimepicker-input", :placeholder => "Created at greater than or equal to", :data => {:target => '#created_atgteqPicker'} %>
+          <div class="input-group-append" data-target='#created_atgteqPicker' data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class='input-group date' id='created_atlteqPicker' data-target-input="nearest">
+          <%= f.text_field :created_at_lteq, :class => "form-control datetimepicker-input", :placeholder => "Created at less than or equal to", :data => {:target => '#created_atlteqPicker'} %>
+          <div class="input-group-append" data-target='#created_atlteqPicker' data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+      $(function () {
+          $('#created_atgteqPicker').datetimepicker({
+              format: 'YYYY-MM-DD hh:mm:SS'
+          });
+          $('#created_atlteqPicker').datetimepicker({
+              useCurrent: false,
+              format: 'YYYY-MM-DD hh:mm:SS'
+          });
+          $('#created_atgteqPicker').on("dp.change", function (e) {
+              $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+          });
+          $('#created_atlteqPicker').on("dp.change", function (e) {
+              $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+          });
+      });
+  </script>
+
+
+  <div class="form-group">
+    <%= f.label :user_email_cont, "User email contains" %>
+    <%= f.text_field :user_email_cont, :class => "form-control", :placeholder => "User email contains" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :borrower_name_cont, "Borrower name contains" %>
+    <%= f.text_field :borrower_name_cont, :class => "form-control", :placeholder => "Borrower name contains" %>
+  </div>
+
+
+  <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+
+  <a href="/clothing_pieces" class="btn btn-outline-secondary btn-block mb-1">Clear filters</a>
+
+<% end %>
+
+<a class="btn btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#clothing_pieces_filters">
+  Show filters
+</a>
