@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Clothing Pieces
+
+    <a data-toggle="collapse" href="#borrower_clothing_pieces_new_form">
+      Add clothing piece
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @borrower.clothing_pieces.each do |clothing_piece| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to clothing_piece, clothing_piece %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to clothing_piece, method: :delete, data: { confirm: "Do you really want to delete this clothing_piece" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="borrower_clothing_pieces_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
