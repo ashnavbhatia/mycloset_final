@@ -13,7 +13,7 @@ class Api::V1::BorrowersController < Api::V1::GraphitiController
     borrower = BorrowerResource.build(params)
 
     if borrower.save
-      render jsonapi: borrower, status: 201
+      render jsonapi: borrower, status: :created
     else
       render jsonapi_errors: borrower
     end
@@ -33,7 +33,7 @@ class Api::V1::BorrowersController < Api::V1::GraphitiController
     borrower = BorrowerResource.find(params)
 
     if borrower.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: borrower
     end

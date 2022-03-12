@@ -2,7 +2,7 @@ class Borrower < ApplicationRecord
   # Direct associations
 
   has_many   :clothing_pieces,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
@@ -13,5 +13,4 @@ class Borrower < ApplicationRecord
   def to_s
     name
   end
-
 end

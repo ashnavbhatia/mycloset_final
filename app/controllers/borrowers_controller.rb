@@ -1,10 +1,10 @@
 class BorrowersController < ApplicationController
-  before_action :set_borrower, only: [:show, :edit, :update, :destroy]
+  before_action :set_borrower, only: %i[show edit update destroy]
 
   # GET /borrowers
   def index
     @q = Borrower.ransack(params[:q])
-    @borrowers = @q.result(:distinct => true).includes(:clothing_pieces).page(params[:page]).per(10)
+    @borrowers = @q.result(distinct: true).includes(:clothing_pieces).page(params[:page]).per(10)
   end
 
   # GET /borrowers/1
@@ -18,15 +18,14 @@ class BorrowersController < ApplicationController
   end
 
   # GET /borrowers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /borrowers
   def create
     @borrower = Borrower.new(borrower_params)
 
     if @borrower.save
-      redirect_to @borrower, notice: 'Borrower was successfully created.'
+      redirect_to @borrower, notice: "Borrower was successfully created."
     else
       render :new
     end
@@ -35,7 +34,7 @@ class BorrowersController < ApplicationController
   # PATCH/PUT /borrowers/1
   def update
     if @borrower.update(borrower_params)
-      redirect_to @borrower, notice: 'Borrower was successfully updated.'
+      redirect_to @borrower, notice: "Borrower was successfully updated."
     else
       render :edit
     end
@@ -44,17 +43,18 @@ class BorrowersController < ApplicationController
   # DELETE /borrowers/1
   def destroy
     @borrower.destroy
-    redirect_to borrowers_url, notice: 'Borrower was successfully destroyed.'
+    redirect_to borrowers_url, notice: "Borrower was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_borrower
-      @borrower = Borrower.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def borrower_params
-      params.require(:borrower).permit(:name, :contact)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_borrower
+    @borrower = Borrower.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def borrower_params
+    params.require(:borrower).permit(:name, :contact)
+  end
 end

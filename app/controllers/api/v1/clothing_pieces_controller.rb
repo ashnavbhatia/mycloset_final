@@ -13,7 +13,7 @@ class Api::V1::ClothingPiecesController < Api::V1::GraphitiController
     clothing_piece = ClothingPieceResource.build(params)
 
     if clothing_piece.save
-      render jsonapi: clothing_piece, status: 201
+      render jsonapi: clothing_piece, status: :created
     else
       render jsonapi_errors: clothing_piece
     end
@@ -33,7 +33,7 @@ class Api::V1::ClothingPiecesController < Api::V1::GraphitiController
     clothing_piece = ClothingPieceResource.find(params)
 
     if clothing_piece.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: clothing_piece
     end
