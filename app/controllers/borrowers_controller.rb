@@ -8,6 +8,7 @@ class BorrowersController < ApplicationController
 
   # GET /borrowers/1
   def show
+    @clothing_piece = ClothingPiece.new
   end
 
   # GET /borrowers/new

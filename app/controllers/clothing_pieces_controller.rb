@@ -24,7 +24,12 @@ class ClothingPiecesController < ApplicationController
     @clothing_piece = ClothingPiece.new(clothing_piece_params)
 
     if @clothing_piece.save
-      redirect_to @clothing_piece, notice: 'Clothing piece was successfully created.'
+      message = 'ClothingPiece was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @clothing_piece, notice: message
+      end
     else
       render :new
     end
