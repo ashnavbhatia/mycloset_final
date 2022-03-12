@@ -75,7 +75,7 @@
     <%= f.label :borrower_id %>
 
     <!-- Input for borrower_id start -->
-    <%= f.text_field :borrower_id, class: "form-control" %>
+    <%= f.collection_select :borrower_id, Borrower.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for borrower_id end -->
   </div>
   <!-- Label and input for borrower_id end -->

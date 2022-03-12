@@ -197,7 +197,7 @@
 
     <%= f.label :borrower_id %>
     <!-- Input for borrower_id start -->
-    <%= f.number_field :borrower_id, class: borrower_class, placeholder: "Enter borrower" %>
+    <%= f.collection_select :borrower_id, Borrower.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for borrower_id end -->
     <% if borrower_was_invalid %>
       <% clothing_piece.errors.full_messages_for(:borrower).each do |message| %>
