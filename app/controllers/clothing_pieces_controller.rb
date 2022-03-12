@@ -1,4 +1,6 @@
 class ClothingPiecesController < ApplicationController
+  before_action :current_user_must_be_clothing_piece_user, only: [:edit, :update, :destroy] 
+
   before_action :set_clothing_piece, only: [:show, :edit, :update, :destroy]
 
   # GET /clothing_pieces
@@ -57,6 +59,14 @@ class ClothingPiecesController < ApplicationController
 
 
   private
+
+  def current_user_must_be_clothing_piece_user
+    set_clothing_piece
+    unless current_user == @clothing_piece.user
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_clothing_piece
       @clothing_piece = ClothingPiece.find(params[:id])

@@ -61,16 +61,20 @@
 
       <!-- Edit link clothing_piece start -->
       <div class="col">
-        <%= link_to edit_clothing_piece_url(clothing_piece), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @clothing_piece.user %>
+          <%= link_to edit_clothing_piece_url(clothing_piece), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link clothing_piece end -->
 
       <!-- Delete link clothing_piece start -->
       <div class="col">
-        <%= link_to clothing_piece, method: :delete, data: { confirm: "Do you really want to delete this clothing_piece?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @clothing_piece.user %>
+          <%= link_to clothing_piece, method: :delete, data: { confirm: "Do you really want to delete this clothing_piece?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link clothing_piece end -->
