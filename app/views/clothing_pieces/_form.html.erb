@@ -1,0 +1,238 @@
+<% was_validated = clothing_piece.errors.any? %>
+
+<%= form_with(model: clothing_piece, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for title start -->
+  <div class="form-group">
+    <% title_class = "form-control" %>
+    <% title_was_invalid = clothing_piece.errors.include?(:title) %>
+
+    <% if was_validated %>
+      <% if title_was_invalid %>
+        <% title_class << " is-invalid" %>
+      <% else %>
+        <% title_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :title %>
+    <!-- Input for title start -->
+    <%= f.text_field :title, class: title_class, placeholder: "Enter title" %>
+    <!-- Input for title end -->
+    <% if title_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:title).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for title end -->
+  <!-- Label and input for description start -->
+  <div class="form-group">
+    <% description_class = "form-control" %>
+    <% description_was_invalid = clothing_piece.errors.include?(:description) %>
+
+    <% if was_validated %>
+      <% if description_was_invalid %>
+        <% description_class << " is-invalid" %>
+      <% else %>
+        <% description_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :description %>
+    <!-- Input for description start -->
+    <%= f.text_area :description, class: description_class, placeholder: "Enter description" %>
+    <!-- Input for description end -->
+    <% if description_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:description).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for description end -->
+  <!-- Label and input for image start -->
+  <div class="form-group">
+    <% image_class = "form-control" %>
+    <% image_was_invalid = clothing_piece.errors.include?(:image) %>
+
+    <% if was_validated %>
+      <% if image_was_invalid %>
+        <% image_class << " is-invalid" %>
+      <% else %>
+        <% image_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :image %>
+    <!-- Input for image start -->
+    <%= f.text_field :image, class: image_class, placeholder: "Enter image" %>
+    <!-- Input for image end -->
+    <% if image_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:image).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for image end -->
+  <!-- Label and input for clothing_type start -->
+  <div class="form-group">
+    <% clothing_type_class = "form-control" %>
+    <% clothing_type_was_invalid = clothing_piece.errors.include?(:clothing_type) %>
+
+    <% if was_validated %>
+      <% if clothing_type_was_invalid %>
+        <% clothing_type_class << " is-invalid" %>
+      <% else %>
+        <% clothing_type_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :clothing_type %>
+    <!-- Input for clothing_type start -->
+    <%= f.text_field :clothing_type, class: clothing_type_class, placeholder: "Enter clothing type" %>
+    <!-- Input for clothing_type end -->
+    <% if clothing_type_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:clothing_type).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for clothing_type end -->
+  <!-- Label and input for brand_name start -->
+  <div class="form-group">
+    <% brand_name_class = "form-control" %>
+    <% brand_name_was_invalid = clothing_piece.errors.include?(:brand_name) %>
+
+    <% if was_validated %>
+      <% if brand_name_was_invalid %>
+        <% brand_name_class << " is-invalid" %>
+      <% else %>
+        <% brand_name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :brand_name %>
+    <!-- Input for brand_name start -->
+    <%= f.text_field :brand_name, class: brand_name_class, placeholder: "Enter brand name" %>
+    <!-- Input for brand_name end -->
+    <% if brand_name_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:brand_name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for brand_name end -->
+  <!-- Label and input for last_used_date start -->
+  <div class="form-group">
+    <% last_used_date_class = "form-control" %>
+    <% last_used_date_was_invalid = clothing_piece.errors.include?(:last_used_date) %>
+
+    <% if was_validated %>
+      <% if last_used_date_was_invalid %>
+        <% last_used_date_class << " is-invalid" %>
+      <% else %>
+        <% last_used_date_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :last_used_date %>
+    <!-- Input for last_used_date start -->
+    <%= f.date_select :last_used_date, class: last_used_date_class, placeholder: "Enter last used date" %>
+    <!-- Input for last_used_date end -->
+    <% if last_used_date_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:last_used_date).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for last_used_date end -->
+  <!-- Label and input for borrowed start -->
+  <div class="form-check">
+    <% borrowed_class = "form-check-input" %>
+    <% borrowed_was_invalid = clothing_piece.errors.include?(:borrowed) %>
+
+    <% if was_validated %>
+      <% if borrowed_was_invalid %>
+        <% borrowed_class << " is-invalid" %>
+      <% else %>
+        <% borrowed_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :borrowed, class: "form-check-label" do %>
+      <%= f.check_box :borrowed, class: borrowed_class %> Borrowed
+    <% end %>
+    <% if borrowed_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:borrowed).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for borrowed end -->
+  <!-- Label and input for borrower_id start -->
+  <div class="form-group">
+    <% borrower_class = "form-control" %>
+    <% borrower_was_invalid = clothing_piece.errors.include?(:borrower) %>
+
+    <% if was_validated %>
+      <% if borrower_was_invalid %>
+        <% borrower_class << " is-invalid" %>
+      <% else %>
+        <% borrower_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :borrower_id %>
+    <!-- Input for borrower_id start -->
+    <%= f.number_field :borrower_id, class: borrower_class, placeholder: "Enter borrower" %>
+    <!-- Input for borrower_id end -->
+    <% if borrower_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:borrower).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for borrower_id end -->
+  <!-- Label and input for user_id start -->
+  <div class="form-group">
+    <% user_class = "form-control" %>
+    <% user_was_invalid = clothing_piece.errors.include?(:user) %>
+
+    <% if was_validated %>
+      <% if user_was_invalid %>
+        <% user_class << " is-invalid" %>
+      <% else %>
+        <% user_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :user_id %>
+    <!-- Input for user_id start -->
+    <%= f.number_field :user_id, class: user_class, placeholder: "Enter user" %>
+    <!-- Input for user_id end -->
+    <% if user_was_invalid %>
+      <% clothing_piece.errors.full_messages_for(:user).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for user_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
