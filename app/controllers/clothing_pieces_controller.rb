@@ -4,25 +4,20 @@ class ClothingPiecesController < ApplicationController
 
   before_action :set_clothing_piece, only: %i[show edit update destroy]
 
-  # GET /clothing_pieces
   def index
     @q = ClothingPiece.ransack(params[:q])
     @clothing_pieces = @q.result(distinct: true).includes(:user,
                                                           :borrower).page(params[:page]).per(10)
   end
 
-  # GET /clothing_pieces/1
   def show; end
 
-  # GET /clothing_pieces/new
   def new
     @clothing_piece = ClothingPiece.new
   end
 
-  # GET /clothing_pieces/1/edit
   def edit; end
 
-  # POST /clothing_pieces
   def create
     @clothing_piece = ClothingPiece.new(clothing_piece_params)
 
@@ -38,7 +33,6 @@ class ClothingPiecesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /clothing_pieces/1
   def update
     if @clothing_piece.update(clothing_piece_params)
       redirect_to @clothing_piece,
@@ -48,7 +42,6 @@ class ClothingPiecesController < ApplicationController
     end
   end
 
-  # DELETE /clothing_pieces/1
   def destroy
     @clothing_piece.destroy
     message = "ClothingPiece was successfully deleted."
@@ -69,12 +62,10 @@ class ClothingPiecesController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_clothing_piece
     @clothing_piece = ClothingPiece.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def clothing_piece_params
     params.require(:clothing_piece).permit(:title, :description, :image,
                                            :clothing_type, :brand_name, :last_used_date, :borrowed, :borrower_id, :user_id)
