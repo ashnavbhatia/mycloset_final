@@ -3,7 +3,7 @@ class BorrowersController < ApplicationController
 
   # GET /borrowers
   def index
-    @borrowers = Borrower.all
+    @borrowers = Borrower.page(params[:page]).per(10)
   end
 
   # GET /borrowers/1

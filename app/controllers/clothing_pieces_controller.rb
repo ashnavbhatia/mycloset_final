@@ -5,7 +5,7 @@ class ClothingPiecesController < ApplicationController
 
   # GET /clothing_pieces
   def index
-    @clothing_pieces = ClothingPiece.all
+    @clothing_pieces = ClothingPiece.page(params[:page]).per(10)
   end
 
   # GET /clothing_pieces/1
